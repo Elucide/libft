@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include <stdio.h>
+
 
 int	is_charset(char c, char const *charset)
 {
@@ -34,13 +36,15 @@ char *ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	while (is_charset(s1[i], set))
 		i++;
-	while (is_charset(s1[end], set))
+	while (is_charset(s1[end - 1], set) && end)
 		end--;
 	len = end - i;
+	printf("len :%d\n", len);
 	out = malloc(sizeof(char) * len);
 	if (!out)
 		return (NULL);
 	end = 0;
+	len += i;
 	while (i != len)
 	{
 		out[end] = s1[i];
